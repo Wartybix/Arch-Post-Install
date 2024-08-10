@@ -24,7 +24,7 @@ These are some notes I have written for myself, for the next time I install Arch
 
 Install new packages with:
 \begin{lstlisting}[escapechar=@]
-pacman -Syu @\underline{packagename}@
+# pacman -Syu @\underline{packagename}@
 \end{lstlisting}
 Passing the \lstinline|-Syu| flag updates all packages on the system, and is necessary to prevent any breakage from incompatible packages.
 Check the manual page (\lstinline|man pacman|) for more information on what each of these 
@@ -32,7 +32,7 @@ flags do.
 
 Remove packages with:
 \begin{lstlisting}[escapechar=@]
-pacman -R @\underline{packagename}@
+# pacman -R @\underline{packagename}@
 \end{lstlisting}
 
 \section{Bash Autocomplete}
@@ -45,7 +45,7 @@ Install the \lstinline|bash-completion| package for this functionality (\lstinli
 To make management of AUR packages easier, Yay should be installed.
 On a fresh install of Arch Linux, Git may not be installed --- in which case install it.
 \begin{lstlisting}
-pacman -Syu git
+# pacman -Syu git
 \end{lstlisting}
 Clone Yay's repository located at \url{https://aur.archlinux.org/yay.git}:
 \begin{lstlisting}
@@ -91,11 +91,22 @@ Pacman's cache of previous package versions will build up over time.
 To clear this cache on a weekly basis, enable and start \lstinline|paccache.timer| \cite{paccache-timer}.
 
 \begin{lstlisting}
-systemctl enable paccache.timer
-systemctl start paccache.timer
+# systemctl enable paccache.timer
+# systemctl start paccache.timer
 \end{lstlisting}
 
 \section{Setting up secure boot}
+
+Thank you to `Walian' on YouTube for an easy-to-follow guide on enabling secure boot on Arch Linux (\url{https://www.youtube.com/watch?v=yU-SE7QX6WQ}).
+I have written the following instructions from this video here in order to preserve them, and to allow the following of these instructions in a textual manner.
+
+Reboot into your motherboard's BIOS, either by entering your motherboard's assigned `BIOS key' on boot, or by entering the following in a Linux terminal:
+\begin{lstlisting}
+systemctl reboot --firmware-setup
+\end{lstlisting}
+
+In the BIOS, disable secure boot (if not disabled already), and reset your secure boot keys.
+Save changes and reboot.
 
 \section{Terminal linting}
 
