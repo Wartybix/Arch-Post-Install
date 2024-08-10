@@ -49,15 +49,15 @@ On a fresh install of Arch Linux, Git may not be installed --- in which case ins
 \end{lstlisting}
 Clone Yay's repository located at \url{https://aur.archlinux.org/yay.git}:
 \begin{lstlisting}
-git clone https://aur.archlinux.org/yay.git
+$ git clone https://aur.archlinux.org/yay.git
 \end{lstlisting}
 Navigate into the new directory:
 \begin{lstlisting}
-cd yay
+$ cd yay
 \end{lstlisting}
 Install Yay:
 \begin{lstlisting}
-makepkg -si
+$ makepkg -si
 \end{lstlisting}
 Yay is now installed.
 
@@ -102,7 +102,7 @@ I have written the following instructions from this video here in order to prese
 
 Reboot into your motherboard's BIOS, either by entering your motherboard's assigned `BIOS key' on boot, or by entering the following in a Linux terminal:
 \begin{lstlisting}
-systemctl reboot --firmware-setup
+$ systemctl reboot --firmware-setup
 \end{lstlisting}
 
 In the BIOS, disable secure boot (if not disabled already), and reset your secure boot keys.
