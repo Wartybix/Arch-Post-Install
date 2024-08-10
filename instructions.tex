@@ -1,5 +1,7 @@
 \documentclass[a4paper]{article}
+\usepackage[numbers]{natbib}
 \usepackage{listings}
+\usepackage[hidelinks]{hyperref}
 \usepackage[T1]{fontenc} %Stops attempting to use speech marks in code listings.
 \lstset{
     columns=fullflexible,
@@ -20,14 +22,84 @@ These are some notes I have written for myself, for the next time I install Arch
 
 \section{Using Pacman}
 
+Install new packages with:
+\begin{lstlisting}[escapechar=@]
+pacman -Syu @\underline{packagename}@
+\end{lstlisting}
+Passing the \lstinline|-Syu| flag updates all packages on the system, and is necessary to prevent any breakage from incompatible packages.
+Check the manual page (\lstinline|man pacman|) for more information on what each of these 
+flags do.
+
+Remove packages with:
+\begin{lstlisting}[escapechar=@]
+pacman -R @\underline{packagename}@
+\end{lstlisting}
+
 \section{Bash Autocomplete}
+
+On a fresh installation of Arch Linux, the terminal doesn't always auto-complete when pressing tab while inputting package names and such.
+Install the \lstinline|bash-completion| package for this functionality (\lstinline|pacman -Syu bash-completion|).
 
 \section{Installing Yay}
 
+To make management of AUR packages easier, Yay should be installed.
+On a fresh install of Arch Linux, Git may not be installed --- in which case install it.
+\begin{lstlisting}
+pacman -Syu git
+\end{lstlisting}
+Clone Yay's repository located at \url{https://aur.archlinux.org/yay.git}:
+\begin{lstlisting}
+git clone https://aur.archlinux.org/yay.git
+\end{lstlisting}
+Navigate into the new directory:
+\begin{lstlisting}
+cd yay
+\end{lstlisting}
+Install Yay:
+\begin{lstlisting}
+makepkg -si
+\end{lstlisting}
+Yay is now installed.
+
 \section{Update Notifier}
+
+This step is only helpful if using the GNOME desktop environment.
+
+Get informed of updates for your system without needing to manually check yourself in the terminal.
+To enable this functionality, install the Arch Linux Updates Indicator (\lstinline|arch-update@RaphaelRochet|) GNOME extension.
+
+Disable the `Always visible' option in its settings to only show the update icon when new updates are available.
+
+\subsection*{Implementing with Yay}
+
+By default, the extension only works with packages using Pacman.
+Extend this functionality to Yay to allow the notifications and upgrades of new AUR package updates.
+The following commands are as per the project's wiki (\url{https://github.com/RaphaelRochet/arch-update/wiki}).
+
+In `Advanced Settings' of the extension's settings, change `Command to check for package updates' to:
+\begin{lstlisting}
+/bin/sh -c "(/usr/bin/checkupdates; /usr/bin/yay -Qu --color never | sed 's/Get .*//') | sort -u -t' ' -k1,1"
+\end{lstlisting}
+And change `Command to update packages' to:
+\begin{lstlisting}
+kgx -e '/bin/sh -c "yay ; echo Done - Press enter to exit; read"'
+\end{lstlisting}
 
 \section{Setting up Pacman cache auto-clean}
 
-\section{Terminal Linting}
+Pacman's cache of previous package versions will build up over time.
+To clear this cache on a weekly basis, enable and start \lstinline|paccache.timer| \cite{paccache-timer}.
+
+\begin{lstlisting}
+systemctl enable paccache.timer
+systemctl start paccache.timer
+\end{lstlisting}
+
+\section{Setting up secure boot}
+
+\section{Terminal linting}
+
+\bibliographystyle{IEEEtranN}
+\bibliography{refs}
 
 \end{document}
