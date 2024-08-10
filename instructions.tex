@@ -113,6 +113,55 @@ Install the \lstinline|sbctl| package:
 # pacman -Syu sbctl
 \end{lstlisting}
 
+Create secure boot keys with:
+\begin{lstlisting}
+# sbctl create-keys
+\end{lstlisting}
+
+Enroll the keys with your system with:
+\begin{lstlisting}
+# sbctl enroll-keys -m
+\end{lstlisting}
+
+Sign the bootloader with:
+\begin{lstlisting}
+# sbctl sign -s -o /usr/lib/systemd/boot/efi/systemd-bootx64.efi.signed /usr/lib/systemd/boot/efi/systemd-bootx64.efi
+\end{lstlisting}
+
+Find the location of your kernel image with:
+\begin{lstlisting}
+# cat /etc/mkinitcpio.d/linux.preset 
+\end{lstlisting}
+
+The location of the kernel image to sign is listed as \lstinline|ALL_kver=|.
+This location will most likely be \lstinline|/boot/vmlinuz-linux|.
+If using a unified kernel image, the kernel image to sign is listed as \lstinline|default_uki=|, which will most likely be \lstinline|/efi/EFI/Linux/arch-linux.efi|.
+
+Sign the kernel image:
+\begin{lstlisting}
+# sbctl sign -s /boot/vmlinuz-linux
+\end{lstlisting}
+If using a unified kernel image:
+\begin{lstlisting}
+# sbctl sign -s /efi/EFI/Linux/arch-linux.efi
+\end{lstlisting}
+If using an LTS kernel image:
+\begin{lstlisting}
+# sbctl sign -s /boot/vmlinuz-linux-lts
+\end{lstlisting}
+
+Reinstall the bootloader:
+\begin{lstlisting}
+# bootctl install
+\end{lstlisting}
+
+Ensure all files have been signed correctly with:
+\begin{lstlisting}
+# sbctl verify
+\end{lstlisting}
+
+If everything is signed and there are no issues, reboot back into the BIOS and enable secure boot.
+
 \section{Terminal linting}
 
 \section{Gaming on Linux}
