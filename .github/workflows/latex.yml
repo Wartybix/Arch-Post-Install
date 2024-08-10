@@ -1,0 +1,17 @@
+name: Build LaTeX document
+on: [push, workflow_dispatch]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: nschloe/action-cached-lfs-checkout@v1
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: instructions.tex
+      - name: Upload PDF file
+        uses: actions/upload-artifact@v3
+        with:
+          name: Instructions
+          path: instructions.pdf
