@@ -214,6 +214,20 @@ echo "options hid_xpadneo rumble_attenuation=0,70" | sudo tee /etc/modprobe.d/99
 \end{lstlisting}
 Change the \lstinline|rumble_attenuation=0,70| value to your preferred value.
 
+\subsection{Feral GameMode}
+
+Install Feral GameMode for CPU optimizations when playing games on Linux.
+Install the \lstinline|gamemode| and \lstinline|lib32-gamemode| packages \cite{arch-wiki-gamemode}:
+
+\begin{lstlisting}
+$ sudo pacman -Syu gamemode lib32-gamemode
+\end{lstlisting}
+
+Add yourself to the \lstinline|gamemode| user group to give Feral GameMode's user daemon the rights to change the CPU governor \cite{arch-wiki-gamemode}.
+\begin{lstlisting}[escapechar=@]
+# usermod -aG gamemode @\underline{exampleuser}@
+\end{lstlisting}
+
 \section{Using FAT32 and NTFS storage on Linux}
 
 Install the \lstinline|dosfstools| and \lstinline|ntfsprogs| packages for compatibility with FAT32 and NTFS systems respectively.
