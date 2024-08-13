@@ -186,6 +186,13 @@ Then enable and start the bluetooth service:
 
 \section{Terminal linting}
 
+Enable linting in Nano by creating a file at \lstinline|~/.nanorc|.
+In this file, add the following:
+\begin{lstlisting}
+include /usr/share/nano/*.nanorc
+\end{lstlisting}
+This enables terminal linting with all of Nano's supported file types.
+
 \section{Gaming on Linux}
 
 Install \lstinline|linux-headers| package with Pacman.
