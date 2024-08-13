@@ -251,7 +251,7 @@ Between \lstinline|gamescope| and \lstinline|%command%| in the launch options ar
 \begin{itemize}
     \item \lstinline|-H| takes the monitor's height in pixels.
     \item \lstinline|-W| takes the monitor's width in pixels.
-    \item \lstinline|-r| takes your monitor's refresh rate in Hz.
+    \item \lstinline|-r| takes the monitor's refresh rate in Hz.
     \item \lstinline|-f| opens a full-screen window.
     \item \lstinline|-e| adds Steam overlay integration. Some Steam games break when using Gamescope without this \cite{arch-wiki-gamescope}.
     \item \lstinline|--backend sdl| forces Gamescope to use SDL2 instead of automatically picking the Wayland backend. The Wayland backend has issues with micro-stutter and Vsync at time of writing, and it took me a while to find the cause of these issues after moving to Arch Linux (and hence using a more up-to-date version of Gamescope). \lstinline|mangoapp| was reporting a steady, high framerate when using the Wayland backend, yet my eyes saw a very jittery image, particularly when using Vsync in game. After doubting my sanity for a few hours, I realized the issue was with the relatively new Wayland backend, and switching back to SDL2 fixed the issue and the image was smooth again. I assume there's some kind of weirdness going on between Gamescope's nested compositor and Mutter or something, which is why Gamescope's in-built \lstinline|mangoapp| reported a flawless smooth framerate, but what was output was a visually jittery mess. Anyway just use SDL2 for now. Maybe the Wayland backend will get better in a year or so.
