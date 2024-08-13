@@ -210,7 +210,7 @@ I recommend a value of 70 (i.e., 30\% rumble strength) for a subtle-yet-noticeab
 To make this trigger rumble attention setting apply at loading time, enter the following: \cite{xpadneo-troubleshooting}
 
 \begin{lstlisting}
-echo "options hid_xpadneo rumble_attenuation=0,70" | sudo tee /etc/modprobe.d/99-xpadneo-bluetooth.conf
+$ echo "options hid_xpadneo rumble_attenuation=0,70" | sudo tee /etc/modprobe.d/99-xpadneo-bluetooth.conf
 \end{lstlisting}
 Change the \lstinline|rumble_attenuation=0,70| value to your preferred value.
 
