@@ -195,8 +195,24 @@ This enables terminal linting with all of Nano's supported file types.
 
 \section{Gaming on Linux}
 
-Install \lstinline|linux-headers| package with Pacman.
-Install \lstinline|xpadneo| with Yay.
+\subsection{Using Xbox game controllers}
+
+The default \lstinline|xpad| drivers for Linux aren't too good --- for example, there are issues with the latency of controller haptics.
+Instead, install \lstinline|linux-headers| package with Pacman.
+Then install \lstinline|xpadneo| with Yay.
+
+The \lstinline|xpadneo| driver allows the use of rumble motors in the Xbox controller's triggers --- this is a feature unused in most games even when running Windows.
+The driver allows the triggers to rumble at the same time as other haptic motors in the controller when being pressed.
+However, the default trigger rumble attenuation might be a bit too strong to the point of distraction.
+This strength of the trigger rumble can be configured in real time by writing \lstinline|0,n|  where \lstinline|n| is a value from 0 (highest strength) to 100 (lowest strength / off) to a file at \lstinline|/sys/module/hid_xpadneo/parameters/rumble_attenuation|, \cite{xpadneo-troubleshooting}.
+I recommend a value of 70 (i.e., 30\% rumble strength) for a subtle-yet-noticeable haptic effect on the triggers --- your preferences may differ however.
+
+To make this trigger rumble attention setting apply at loading time, enter the following: \cite{xpadneo-troubleshooting}
+
+\begin{lstlisting}
+echo "options hid_xpadneo rumble_attenuation=0,70" | sudo tee /etc/modprobe.d/99-xpadneo-bluetooth.conf
+\end{lstlisting}
+Change the \lstinline|rumble_attenuation=0,70| value to your preferred value.
 
 \section{Using FAT32 and NTFS storage on Linux}
 
