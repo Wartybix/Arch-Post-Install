@@ -171,14 +171,14 @@ Setup mode should be \emph{disabled} and secure boot \emph{enabled}.
 
 Now, secure boot should be enabled, and Pacman should re-sign the kernel images when installing new packages.
 
-\section{Enabling bluetooth}
+\section{Enabling Bluetooth}
 
 Install the \lstinline|bluez| and \lstinline|bluez-utils| packages:
 \begin{lstlisting}
 # pacman -Syu bluez bluez-utils
 \end{lstlisting}
 
-Then enable and start the bluetooth service:
+Then enable and start the Bluetooth service:
 \begin{lstlisting}
 # systemctl enable bluetooth.service
 # systemctl start bluetooth.service
