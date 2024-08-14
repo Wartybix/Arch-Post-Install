@@ -243,7 +243,7 @@ To use Gamescope, first install it with the package manager:
 Gamescope can then be used as part of games' launch options in the user's library.
 Here is my recommended launch options to open most games:
 \begin{lstlisting}[escapechar=@]
-gamemoderun gamescope -H @\underline{monitor-height}@ -W @\underline{monitor-width}@ -r @\underline{monitor-refresh-rate}@ -f -e --backend sdl --force-grab-cursor %command%
+gamemoderun gamescope -H @\underline{monitor-height}@ -W @\underline{monitor-width}@ -r @\underline{monitor-refresh-rate}@ -f -e --backend sdl --force-grab-cursor -g %command%
 \end{lstlisting}
 \lstinline|gamemoderun| starts the Feral GameMode daemon as introduced last section.
 \lstinline|gamescope| starts a Gamescope session of whatever \lstinline|%command%| is (i.e., opening a particular game).
@@ -256,6 +256,7 @@ Between \lstinline|gamescope| and \lstinline|%command%| in the launch options ar
     \item \lstinline|-e| adds Steam overlay integration. Some Steam games break when using Gamescope without this \cite{arch-wiki-gamescope}.
     \item \lstinline|--backend sdl| forces Gamescope to use SDL2 instead of automatically picking the Wayland backend. The Wayland backend has issues with micro-stutter and Vsync at time of writing, and it took me a while to find the cause of these issues after moving to Arch Linux (and hence using a more up-to-date version of Gamescope). \lstinline|mangoapp| was reporting a steady, high framerate when using the Wayland backend, yet my eyes saw a very jittery image, particularly when using Vsync in game. After doubting my sanity for a few hours, I realized the issue was with the relatively new Wayland backend, and switching back to SDL2 fixed the issue and the image was smooth again. I assume there's some kind of weirdness going on between Gamescope's nested compositor and Mutter or something, which is why Gamescope's in-built \lstinline|mangoapp| reported a flawless smooth framerate, but what was output was a visually jittery mess. Anyway just use SDL2 for now. Maybe the Wayland backend will get better in a year or so.
     \item \lstinline|--force-grab-cursor| Allows the window inside Gamescope to grab the mouse cursor. Allows moving a camera with the mouse without any limitations as one would expect, without the mouse (invisibly) hitting the edge of the display causing the camera movement to be limited.
+    \item \lstinline|-g| Grabs the keyboard. Useful as Gamescope won't recognise its keyboard shortcuts (like super + F to toggle fullscreen) without it.
 \end{itemize}
 
 \section{Using FAT32 and NTFS storage on Linux}
