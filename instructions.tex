@@ -33,8 +33,9 @@ flags do.
 
 Remove packages with:
 \begin{lstlisting}[escapechar=@]
-# pacman -R @\underline{packagename}@
+# pacman -Rs @\underline{packagename}@
 \end{lstlisting}
+This removes (\lstinline|-R|) the package, as well any of its dependencies (\lstinline|-s|) not needed by other packages.
 
 \section{Bash Autocomplete}
 
