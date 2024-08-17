@@ -90,7 +90,12 @@ kgx -e '/bin/sh -c "yay ; echo Done - Press enter to exit; read"'
 \section{Setting up Pacman cache auto-clean}
 
 Pacman's cache of previous package versions will build up over time.
-To clear this cache on a weekly basis, enable and start \lstinline|paccache.timer| \cite{paccache-timer}.
+To clear this cache on a weekly basis, first install the \lstinline|pacman-contrib| package:
+\begin{lstlisting}
+# pacman -Syu pacman-contrib
+\end{lstlisting}
+
+Then, enable and start \lstinline|paccache.timer| \cite{paccache-timer}.
 
 \begin{lstlisting}
 # systemctl enable paccache.timer
