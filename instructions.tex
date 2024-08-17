@@ -195,6 +195,17 @@ include /usr/share/nano/*.nanorc
 \end{lstlisting}
 This enables linting with all of Nano's supported file types.
 
+\section{Package suggestions}
+
+When running a command belonging to a package not installed on the system, it may be helpful to have Bash name these packages available in the repositories for the user to install.
+This is more helpful than a more generic `command not found' message that instead causes the user to search online for information on what package needs to be installed to provide the command.
+
+To enable this functionality, install the \lstinline|pkgfile| package.
+Edit your \lstinline|.bashrc| file to include this line \cite{arch-command-not-found}:
+\begin{lstlisting}
+source /usr/share/doc/pkgfile/command-not-found.bash
+\end{lstlisting}
+
 \section{Gaming on Linux}
 
 \subsection{Using Xbox game controllers}
