@@ -206,6 +206,10 @@ When running a command belonging to a package not installed on the system, it ma
 This is more helpful than a more generic `command not found' message that instead causes the user to search online for information on what package needs to be installed to provide the command.
 
 To enable this functionality, install the \lstinline|pkgfile| package.
+Run the following:
+\begin{lstlisting}
+# pkgfile --update
+\end{lstlisting}
 Edit your \lstinline|.bashrc| file to include this line \cite{arch-command-not-found}:
 \begin{lstlisting}
 source /usr/share/doc/pkgfile/command-not-found.bash
