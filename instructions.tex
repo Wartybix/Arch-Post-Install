@@ -318,6 +318,12 @@ Users may experience high latency or missed inputs when using this driver on Mic
     \item \lstinline|ConnectionLatency=0|
 \end{itemize}
 
+Restart Bluetooth by running:
+\begin{lstlisting}
+# systemctl restart bluetooth.service
+\end{lstlisting}
+or by rebooting your PC.
+
 View the citation used in this section (and navigate to the URL) to see the full \lstinline|xpadneo| troubleshooting page.
 The full page explains various other issues, and goes into more detail (such as the potential negative side effects of editing the above values in the Bluetooth configuration file).
 This document is only a basic guide, and further reading is required to actually understand what you are doing.
