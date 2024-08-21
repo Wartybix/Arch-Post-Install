@@ -1,6 +1,7 @@
 \documentclass[a4paper]{article}
 \usepackage[numbers]{natbib}
 \usepackage{listings}
+\usepackage[T1]{fontenc}
 \usepackage[hidelinks]{hyperref}
 \lstset{
     columns=fullflexible,
@@ -223,6 +224,8 @@ The default \lstinline|xpad| drivers for Linux aren't too good --- for example, 
 Instead, install \lstinline|linux-headers| package with Pacman.
 Then install \lstinline|xpadneo| with Yay.
 
+\subsubsection{Rumble attenuation}
+
 The \lstinline|xpadneo| driver allows the use of rumble motors in the Xbox controller's triggers --- this is a feature unused in most games even when running Windows.
 The driver allows the triggers to rumble at the same time as other haptic motors in the controller when being pressed.
 However, the default trigger rumble attenuation might be a bit too strong to the point of distraction.
@@ -235,6 +238,19 @@ To make this trigger rumble attention setting apply at loading time, enter the f
 $ echo "options hid_xpadneo rumble_attenuation=0,70" | sudo tee /etc/modprobe.d/99-xpadneo-bluetooth.conf
 \end{lstlisting}
 Change the \lstinline|rumble_attenuation=0,70| value to your preferred value.
+
+\subsubsection{Improve latency on Xbox Series X|S controllers}
+
+Users may experience high latency or missed inputs when using this driver on Microsoft's Xbox Series X|S controllers \cite{xpadneo-troubleshooting}. In this case, the developer recommends editing the Bluetooth configuration file, located at \lstinline|/etc/bluetooth/main.conf|. Navigate down to the \lstinline|[LE]| section of the configuration file and look for the following settings, uncomment and set them as:
+\begin{itemize}
+    \item \lstinline|MinConnectionInterval=7|
+    \item \lstinline|MaxConnectionInterval=9|
+    \item \lstinline|ConnectionLatency=0| \cite{xpadneo-troubleshooting}
+\end{itemize}
+
+\cite{xpadneo-troubleshooting} View the citation used in this section (and navigate to the URL) to see the full \lstinline|xpadneo| troubleshooting page.
+The full page explains various other issues, and goes into more detail (such as the potential negative side effects of editing the above values in the Bluetooth configuration file).
+This document is only a basic guide, and further reading is required to actually understand what you are doing.
 
 \subsection{Feral GameMode}
 
