@@ -194,6 +194,33 @@ Setup mode should be \emph{disabled} and secure boot \emph{enabled}.
 
 Now, secure boot should be enabled, and Pacman should re-sign the kernel images when installing new packages.
 
+\section{Enabling Wayland in Electron \& Chromium}
+
+It is possible to enable native Wayland rendering --- rather than using Xwayland --- in Electron apps like Code and Discord, as well as in Chromium.
+
+To enable Wayland for Electron apps, create a configuration file in your home directory at \lstinline|~/.config/environment.d/|.
+This file can be named anything of the user's choosing --- for example, \lstinline|electron-wayland.conf|.
+Open the file and add \cite{arch-wiki-wayland}:
+\begin{lstlisting}
+ELECTRON_OZONE_PLATFORM_HINT=auto
+\end{lstlisting}
+Log out and log back in again.
+Electron apps should now run in Wayland.
+
+To enable Wayland for Chromium, open Chromium and navigate to \url{chrome://flags/}.
+This will open the `experimental features' list.
+Search for `Preferred Ozone platform', and set it to either `Auto' or `Wayland'.
+This change also affects Chromium web-apps you have installed.
+
+You can test if any window is running in Xwayland by using \lstinline|xeyes|.
+Run
+\begin{lstlisting}
+$ xeyes
+\end{lstlisting}
+in a terminal.
+If the eyes follow the cursor as it moves across an application window, it is running in Xwayland.
+If the eyes do not follow the cursor, the application is running in native Wayland.
+
 \section{Enabling Bluetooth}
 
 Install the \lstinline|bluez| and \lstinline|bluez-utils| packages:
