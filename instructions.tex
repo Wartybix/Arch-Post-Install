@@ -1,5 +1,6 @@
 \documentclass[a4paper]{article}
 \usepackage[numbers]{natbib}
+\usepackage{}
 \usepackage{listings}
 \usepackage[T1]{fontenc}
 \usepackage[hidelinks]{hyperref}
@@ -198,7 +199,8 @@ Now, secure boot should be enabled, and Pacman should re-sign the kernel images 
 
 It is possible to enable native Wayland rendering --- rather than using Xwayland --- in Electron apps like Code and Discord, as well as in Chromium.
 
-To enable Wayland for Electron apps, create a configuration file in your home directory at \lstinline|~/.config/environment.d/|.
+To enable Wayland for Electron apps, create a configuration file in your home directory inside \lstinline|~/.config/environment.d/|.
+You may need to create the \lstinline|environment.d| directory with \lstinline|mkdir|.
 This file can be named anything of the user's choosing --- for example, \lstinline|electron-wayland.conf|.
 Open the file and add \cite{arch-wiki-wayland}:
 \begin{lstlisting}
@@ -227,10 +229,40 @@ When using fractional scaling on GNOME, Xwayland apps can appear blurry, as Mutt
 One solution is to avoid using Xwayland altogether, ensuring programs run in native Wayland, as discussed in the previous section.
 However, this isn't possible for \emph{every} app --- like Steam and JetBrains IDEs such as Android Studio (at time of writing), as well as legacy applications --- so it's likely a user will have to interact with Xwayland in one way or another.
 
-Install the \lstinline|mutter-xwayland-scaling| AUR package to allow Xwayland apps to scale themselves much like in KDE Plasma.
+Install the \lstinline|mutter-xwayland-scaling| AUR package to apply a patch that allows Xwayland apps to scale themselves much like in KDE Plasma.
 \begin{lstlisting}
 $ yay -Syu mutter-xwayland-scaling
 \end{lstlisting}
+
+If not already installed, install dconf Editor:
+\begin{lstlisting}
+# pacman -Syu dconf-editor
+\end{lstlisting}
+Open dconf Editor, and navigate to:
+\begin{lstlisting}
+/org/gnome/mutter/experimental-features
+\end{lstlisting}
+Enable the new \lstinline|xwayland-native-scaling| flag, along with \lstinline|scale-monitor-framebuffer|, if not already enabled.
+Log out and log back in, and ensure the desired scaling is selected in the display settings.
+Xwayland apps should no longer be blurry when using fractional scaling.
+If Xwayland apps are still blurry, try performing a full reboot instead.
+
+\subsection{Side effects}
+
+As this patch is experimental, using it may cause minor GUI glitches, like `click-passthrough', where clicks don't register on a window, and instead the click goes `underneath' it.
+This frequently affects already-open Xwayland windows immediately after changing display scaling settings in my experience.
+To remedy, simply close the affected program (with Alt+F4 if the `close' button can't be clicked) and re-open it.
+
+\subsection{Steam scaling fix}
+
+After applying this patch, I found Steam to be scaled incorrectly (too small), contrary to other Xwayland clients.
+I assume this could affect other users too.
+If Steam is scaled incorrectly, navigate to \lstinline|~/.config/environment.d|.
+Create a new configuration file, e.g. \lstinline|steam-scaling.conf|, and inside put:
+\begin{lstlisting}
+STEAM_FORCE_DESKTOPUI_SCALING=2
+\end{lstlisting}
+This environment variable should double Steam's scaling, hopefully matching the scale of other applications.
 
 \section{Enabling Bluetooth}
 
