@@ -221,6 +221,17 @@ in a terminal.
 If the eyes follow the cursor as it moves across an application window, it is running in Xwayland.
 If the eyes do not follow the cursor, the application is running in native Wayland.
 
+\section{Xwayland scaling patch}
+
+When using fractional scaling on GNOME, Xwayland apps can appear blurry, as Mutter stretches their viewports to match the scaling, resulting in pixelation.
+One solution is to avoid using Xwayland altogether, ensuring programs run in native Wayland, as discussed in the previous section.
+However, this isn't possible for \emph{every} app --- like Steam and JetBrains IDEs such as Android Studio (at time of writing), as well as legacy applications --- so it's likely a user will have to interact with Xwayland in one way or another.
+
+Install the \lstinline|mutter-xwayland-scaling| AUR package to allow Xwayland apps to scale themselves much like in KDE Plasma.
+\begin{lstlisting}
+$ yay -Syu mutter-xwayland-scaling
+\end{lstlisting}
+
 \section{Enabling Bluetooth}
 
 Install the \lstinline|bluez| and \lstinline|bluez-utils| packages:
