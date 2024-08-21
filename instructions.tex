@@ -279,14 +279,14 @@ Change the \lstinline|rumble_attenuation=0,70| value to your preferred value.
 
 \subsubsection{Improve latency on Xbox Series X|S controllers}
 
-Users may experience high latency or missed inputs when using this driver on Microsoft's Xbox Series X|S controllers \cite{xpadneo-troubleshooting}. In this case, the developer recommends editing the Bluetooth configuration file, located at \lstinline|/etc/bluetooth/main.conf|. Navigate down to the \lstinline|[LE]| section of the configuration file and look for the following settings, uncomment and set them as:
+Users may experience high latency or missed inputs when using this driver on Microsoft's Xbox Series X|S controllers \cite{xpadneo-troubleshooting}. In this case, the developer recommends editing the Bluetooth configuration file, located at \lstinline|/etc/bluetooth/main.conf|. Navigate down to the \lstinline|[LE]| section of the configuration file and look for the following settings, uncomment and set them as \cite{xpadneo-troubleshooting}:
 \begin{itemize}
     \item \lstinline|MinConnectionInterval=7|
     \item \lstinline|MaxConnectionInterval=9|
-    \item \lstinline|ConnectionLatency=0| \cite{xpadneo-troubleshooting}
+    \item \lstinline|ConnectionLatency=0|
 \end{itemize}
 
-\cite{xpadneo-troubleshooting} View the citation used in this section (and navigate to the URL) to see the full \lstinline|xpadneo| troubleshooting page.
+View the citation used in this section (and navigate to the URL) to see the full \lstinline|xpadneo| troubleshooting page.
 The full page explains various other issues, and goes into more detail (such as the potential negative side effects of editing the above values in the Bluetooth configuration file).
 This document is only a basic guide, and further reading is required to actually understand what you are doing.
 
