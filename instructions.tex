@@ -65,6 +65,21 @@ $ makepkg -si
 \end{lstlisting}
 Yay is now installed.
 
+\section{Setting up Pacman cache auto-clean}
+
+Pacman's cache of previous package versions will build up over time.
+To clear this cache on a weekly basis, first install the \lstinline|pacman-contrib| package:
+\begin{lstlisting}
+# pacman -Syu pacman-contrib
+\end{lstlisting}
+
+Then, enable and start \lstinline|paccache.timer| \cite{paccache-timer}.
+
+\begin{lstlisting}
+# systemctl enable paccache.timer
+# systemctl start paccache.timer
+\end{lstlisting}
+
 \section{Update Notifier}
 
 This step is only helpful if using the GNOME desktop environment.
@@ -88,21 +103,6 @@ In `Advanced Settings' of the extension's settings, change `Command to check for
 And change `Command to update packages' to:
 \begin{lstlisting}
 kgx -e '/bin/sh -c "yay ; echo Done - Press enter to exit; read"'
-\end{lstlisting}
-
-\section{Setting up Pacman cache auto-clean}
-
-Pacman's cache of previous package versions will build up over time.
-To clear this cache on a weekly basis, first install the \lstinline|pacman-contrib| package:
-\begin{lstlisting}
-# pacman -Syu pacman-contrib
-\end{lstlisting}
-
-Then, enable and start \lstinline|paccache.timer| \cite{paccache-timer}.
-
-\begin{lstlisting}
-# systemctl enable paccache.timer
-# systemctl start paccache.timer
 \end{lstlisting}
 
 \section{Package suggestions}
