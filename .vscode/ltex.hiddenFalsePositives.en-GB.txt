@@ -1,0 +1,10 @@
+{"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\QIn this case, the developer recommends editing the Bluetooth configuration file, located at |/etc/bluetooth/main.conf|.\\E$"}
+{"rule":"NON_STANDARD_WORD","sentence":"^\\QImprove latency on Xbox Series X|S controllers.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\QCreate a new configuration file, e.g., |steam-scaling.conf|, and inside put: This environment variable — after rebooting — should double Steam's scaling, hopefully matching the scale of other applications.\\E$"}
+{"rule":"NON_STANDARD_WORD","sentence":"^\\QIf Steam is scaled incorrectly, navigate to | /.config/environment.d|.\\E$"}
+{"rule":"NON_STANDARD_WORD","sentence":"^\\QYou may need to create the |environment.d| directory with |mkdir|.\\E$"}
+{"rule":"NON_STANDARD_WORD","sentence":"^\\QTo enable Wayland for Electron apps, create a configuration file in your home directory inside | /.config/environment.d/|.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\QThank you to `Walian' on YouTube for an easy-to-follow guide on enabling secure boot on Arch Linux (\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q).\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\QArch Linux Post-Install Wartybix\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qcolumns=fullflexible, basicstyle=, frame=single, breaklines=true, upquote=true Game-scope\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\Qcolumns=fullflexible, basicstyle=, frame=single, breaklines=true, upquote=true Game-scope\\E$"}
