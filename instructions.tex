@@ -47,7 +47,7 @@ Install the \lstinline|bash-completion| package for this functionality (\lstinli
 \section{Installing Yay}
 
 To make management of AUR packages easier, Yay should be installed.
-On a fresh install of Arch Linux, Git may not be installed --- in which case install it.
+On a fresh installation of Arch Linux, Git may not be installed --- in which case install it.
 \begin{lstlisting}
 # pacman -Syu git
 \end{lstlisting}
@@ -143,7 +143,7 @@ Create secure boot keys with:
 # sbctl create-keys
 \end{lstlisting}
 
-Enroll the keys with your system with:
+Enrol the keys with your system with:
 \begin{lstlisting}
 # sbctl enroll-keys -m
 \end{lstlisting}
@@ -228,7 +228,8 @@ If the eyes do not follow the cursor, the application is running in native Wayla
 
 When using fractional scaling on GNOME, Xwayland apps can appear blurry, as Mutter stretches their viewports to match the scaling, resulting in pixelation.
 One solution is to avoid using Xwayland altogether, ensuring programs run in native Wayland, as discussed in the previous section.
-However, this isn't possible for \emph{every} app --- like Steam and JetBrains IDEs such as Android Studio (at time of writing), as well as legacy applications --- so it's likely a user will have to interact with Xwayland in one way or another.
+However, this isn't possible for \emph{every} app --- like Steam and JetBrains IDEs such as Android Studio (at time of writing), as well as legacy applications.
+Therefore, it's likely a user will have to interact with Xwayland in one way or another.
 
 Install the \lstinline|mutter-xwayland-scaling| AUR package to apply a patch that allows Xwayland apps to scale themselves much like in KDE Plasma.
 \begin{lstlisting}
@@ -259,7 +260,7 @@ To remedy, simply close the affected program (with Alt+F4 if the `close' button 
 After applying this patch, I found Steam to be scaled incorrectly (too small), contrary to other Xwayland clients.
 I assume this could affect other users too.
 If Steam is scaled incorrectly, navigate to \lstinline|~/.config/environment.d|.
-Create a new configuration file, e.g. \lstinline|steam-scaling.conf|, and inside put:
+Create a new configuration file, e.g., \lstinline|steam-scaling.conf|, and inside put:
 \begin{lstlisting}
 STEAM_FORCE_DESKTOPUI_SCALING=2
 \end{lstlisting}
@@ -300,7 +301,8 @@ Then install \lstinline|xpadneo| with Yay.
 The \lstinline|xpadneo| driver allows the use of rumble motors in the Xbox controller's triggers --- this is a feature unused in most games even when running Windows.
 The driver allows the triggers to rumble at the same time as other haptic motors in the controller when being pressed.
 However, the default trigger rumble attenuation might be a bit too strong to the point of distraction.
-This strength of the trigger rumble can be configured in real time by writing \lstinline|0,n|  where \lstinline|n| is a value from 0 (the highest strength) to 100 (the lowest strength / off) to a file at \lstinline|/sys/module/hid_xpadneo/parameters/rumble_attenuation|, \cite{xpadneo-troubleshooting}.
+This strength of the trigger rumble can be configured in real time by writing \lstinline|0,n| to a file at \lstinline|/sys/module/hid_xpadneo/parameters/rumble_attenuation|, \cite{xpadneo-troubleshooting}.
+\lstinline|n| is a value from 0 (the highest strength) to 100 (the lowest strength / off).
 I recommend a value of 70 (i.e., 30\% rumble strength) for a subtle-yet-noticeable haptic effect on the triggers --- your preferences may differ, however.
 
 To make this trigger rumble attention setting apply at loading time, enter the following: \cite{xpadneo-troubleshooting}
@@ -347,7 +349,8 @@ Add yourself to the \lstinline|gamemode| user group to give Feral GameMode's use
 
 Gamescope is a compositor that allows for the customization of how games are output to the display.
 Gamescope is especially useful when using fractional scaling in Wayland, as, without it, games detect a ``native'' resolution far beyond the capabilities of the monitor due to the scaling.
-In this case the user must either use the `supersampled' resolution --- forcing their GPU to work harder than necessary, potentially resulting in a lower framerate --- or lower the in-game resolution to that of their monitor's (if even listed), resulting in a blurry and often glitchy image on Wayland.
+In this case the user must either use the `supersampled' resolution --- forcing their GPU to work harder than necessary, potentially resulting in a lower frame rate --- or lower the in-game resolution to that of their monitor's (if even listed).
+This results in a blurry and often glitchy image on Wayland.
 
 Gamescope alleviates this issue as the user can simply enter their resolution with Gamescope's \lstinline|-H| and \lstinline|-W| flags.
 To use Gamescope, first install it with the package manager:
@@ -372,9 +375,9 @@ Between \lstinline|gamescope| and \lstinline|%command%| in the launch options ar
         \item[Note:] Sometimes this flag doesn't work, and Libdecor decorations on your Gamescope window and elements of your desktop environment will still be visible regardless. Use Gamescope's super + F keyboard shortcut to enter full-screen when this happens.
     \end{description}
     \item \lstinline|-e| adds Steam overlay integration. Some Steam games break when using Gamescope without this \cite{arch-wiki-gamescope}.
-    \item \lstinline|--backend sdl| forces Gamescope to use SDL2 instead of automatically picking the Wayland backend. The Wayland backend has issues with micro-stutter and Vsync at time of writing, and it took me a while to find the cause of these issues after moving to Arch Linux (and hence using a more up-to-date version of Gamescope). \lstinline|mangoapp| was reporting a steady, high frame-rate when using the Wayland backend, yet my eyes saw a very jittery image, particularly when using Vsync in game. After doubting my sanity for a few hours, I realized the issue was with the relatively new Wayland backend, and switching back to SDL2 fixed the issue and the image was smooth again. I assume there's some kind of weirdness going on between Gamescope's nested compositor and Mutter or something, which is why Gamescope's in-built \lstinline|mangoapp| reported a flawless smooth framerate, but what was output was a visually jittery mess. Anyway just use SDL2 for now. Maybe the Wayland backend will get better in a year or so.
+    \item \lstinline|--backend sdl| forces Gamescope to use SDL2 instead of automatically picking the Wayland backend. The Wayland backend has issues with micro-stutter and Vsync at time of writing, and it took me a while to find the cause of these issues after moving to Arch Linux (and hence using a more up-to-date version of Gamescope). \lstinline|mangoapp| was reporting a steady, high frame-rate when using the Wayland backend, yet my eyes saw a very jittery image, particularly when using Vsync in game. After doubting my sanity for a few hours, I realized the issue was with the relatively new Wayland backend, and switching back to SDL2 fixed the issue and the image was smooth again. I assume there's some kind of weirdness going on between Gamescope's nested compositor and Mutter or something, which is why Gamescope's in-built \lstinline|mangoapp| reported a flawless smooth frame rate, but what was output was a visually jittery mess. Anyway just use SDL2 for now. Maybe the Wayland backend will get better in a year or so.
     \item \lstinline|--force-grab-cursor| Allows the window inside Gamescope to grab the mouse cursor. Allows moving a camera with the mouse without any limitations as one would expect, without the mouse (invisibly) hitting the edge of the display causing the camera movement to be limited.
-    \item \lstinline|-g| Grabs the keyboard. Useful as Gamescope won't recognise its keyboard shortcuts (like super + F to toggle full-screen) without it.
+    \item \lstinline|-g| Grabs the keyboard. Useful as Gamescope won't recognize its keyboard shortcuts (like super + F to toggle full-screen) without it.
     \begin{description}
         \item[Note:] Your desktop environment's shortcut for toggling full-screen does \emph{not} achieve the same functionality as Gamescope's own shortcut. Your desktop environment's shortcut will stretch the output of Gamescope, making the image slightly blurry/pixelated. However, Gamescope's own shortcut keeps the image intact. This is why it is important to pass the \lstinline|-g| flag to inhibit desktop keyboard shortcuts.
     \end{description}

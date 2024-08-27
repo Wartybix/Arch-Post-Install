@@ -43,6 +43,4 @@ pacman-contrib
 paccache
 pacman
 Syu
-fullflexible
-basicstyle
 sys
