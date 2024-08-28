@@ -392,6 +392,16 @@ Install the \lstinline|dosfstools| and \lstinline|ntfsprogs| packages for compat
 
 Install the \lstinline|tlp| and \lstinline|tlp-rdw| packages to enable power-saving optimizations to extend battery life on Arch Linux \cite{tlp-installation}.
 
+\section{Intel CPU cooling}
+
+Install the \lstinline|thermald| package to prevent Intel CPUs from overheating.
+This daemon monitors the CPU temperature, and activates cooling measures when it reaches above a certain threshold \cite{arch-wiki-thermald}.
+After this is installed, start and enable \lstinline|thermald.service|:
+\begin{lstlisting}
+# systemctl enable thermald.service
+# systemctl start thermald.service
+\end{lstlisting}
+
 \section{Ctrl+Backspace functionality}
 
 Todo: add this section
