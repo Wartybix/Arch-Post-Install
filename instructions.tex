@@ -391,6 +391,11 @@ Install the \lstinline|dosfstools| and \lstinline|ntfsprogs| packages for compat
 \section{Power saving}
 
 Install the \lstinline|tlp| and \lstinline|tlp-rdw| packages to enable power-saving optimizations to extend battery life on Arch Linux \cite{tlp-installation}.
+Start and enable \lstinline|tlp.service|:
+\begin{lstlisting}
+# systemctl enable tlp.service
+# systemctl start tlp.service
+\end{lstlisting}
 
 \section{Intel CPU cooling}
 
