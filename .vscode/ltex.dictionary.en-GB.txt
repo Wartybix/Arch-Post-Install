@@ -44,3 +44,4 @@ paccache
 pacman
 Syu
 sys
+sdl
