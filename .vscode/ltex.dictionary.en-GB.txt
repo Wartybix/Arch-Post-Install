@@ -46,3 +46,10 @@ Syu
 sys
 thermald
 sdl
+archinstall
+localectl
+XkbLayout
+gb
+XkbModel
+XkbLayout-value
+XkbModel-value

@@ -409,7 +409,43 @@ After this is installed, start and enable \lstinline|thermald.service|:
 
 \section{Ctrl+Backspace functionality}
 
-Todo: add this section
+After installing Arch Linux via \lstinline|archinstall|, there may be some issues with using \lstinline|Ctrl + Backspace| to delete whole words in many system programs (e.g., in GNOME Text Editor).
+The issue lies in \lstinline|/etc/vconsole.conf|.
+Open the file in your chosen text editor and remove or comment out the following line:
+\begin{lstlisting}
+XKBOPTIONS=terminate:ctrl_alt_bksp
+\end{lstlisting}
+
+View the configuration file you may have at \lstinline|/etc/X11/xorg.conf.d/00-keyboard.conf|.
+The problematic line is:
+\begin{lstlisting}
+...
+    ...
+    Option "XkbOptions" "terminate:ctrl_alt_bksp"
+...
+\end{lstlisting}
+This line prevents the use of \lstinline|Ctrl+Backspace| to delete words.
+However, \emph{don't} edit this file directly, as per its comments.
+Instead, use the \lstinline|localectl| command.
+Take a note of the \lstinline|XkbLayout| and \lstinline|XkbModel| values in \lstinline|00-keyboard.conf|.
+For example, mine are \lstinline|gb| and \lstinline|pc105| respectively:
+\begin{lstlisting}
+...
+    ...
+    Option "XkbLayout" "gb"
+    Option "XkbModel" "pc105"
+    ...
+...
+\end{lstlisting}
+Enter the following into the terminal, replacing \lstinline|XkbLayout-value| and \lstinline|XkbModel-value| with your values in \lstinline|00-keyboard.conf| for \lstinline|XkbLayout| and \lstinline|XkbModel| respectively:
+\begin{lstlisting}[escapechar=@]
+$ localectl set-x11-keymap @\underline{XkbLayout-value}@ @\underline{XkbModel-value}@
+\end{lstlisting}
+View \lstinline|00-keyboard.conf| again, and ensure that `\lstinline|terminate:ctrl_alt_bksp|' no longer appears in the file.
+
+Finally, start GNOME Tweaks, and navigate to `Keyboard', and then `Additional Layout Options'.
+Uncheck the `Ctrl+Alt+Backspace' option under `Key sequence to kill the X server'.
+Whole-word backspace functionality should be restored, and should hopefully persist upon next reboot.
 
 \bibliographystyle{IEEEtranN}
 \bibliography{refs}
