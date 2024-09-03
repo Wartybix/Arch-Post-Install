@@ -21,7 +21,9 @@
 
 \maketitle
 
+
 These are some notes I have written for myself, for the next time I install Arch Linux.
+
 
 \section{Using Pacman}
 
@@ -39,10 +41,12 @@ Remove packages with:
 \end{lstlisting}
 This removes (\lstinline|-R|) the package, as well any of its dependencies (\lstinline|-s|) not needed by other packages.
 
+
 \section{Bash Autocomplete}
 
 On a fresh installation of Arch Linux, the terminal doesn't always auto-complete when pressing tab while inputting package names and such.
 Install the \lstinline|bash-completion| package for this functionality (\lstinline|pacman -Syu bash-completion|).
+
 
 \section{Installing Yay}
 
@@ -65,6 +69,7 @@ $ makepkg -si
 \end{lstlisting}
 Yay is now installed.
 
+
 \section{Setting up Pacman cache auto-clean}
 
 Pacman's cache of previous package versions will build up over time.
@@ -79,6 +84,7 @@ Then, enable and start \lstinline|paccache.timer| \cite{paccache-timer}.
 # systemctl enable paccache.timer
 # systemctl start paccache.timer
 \end{lstlisting}
+
 
 \section{Update Notifier}
 
@@ -105,6 +111,7 @@ And change `Command to update packages' to:
 kgx -e '/bin/sh -c "yay ; echo Done - Press enter to exit; read"'
 \end{lstlisting}
 
+
 \section{Package suggestions}
 
 When running a command belonging to a package not installed on the system, it may be helpful to have Bash name these packages available in the repositories for the user to install.
@@ -119,6 +126,7 @@ Edit your \lstinline|.bashrc| file to include this line \cite{arch-command-not-f
 \begin{lstlisting}
 source /usr/share/doc/pkgfile/command-not-found.bash
 \end{lstlisting}
+
 
 \section{Setting up secure boot}
 
@@ -196,6 +204,7 @@ Setup mode should be \emph{disabled} and secure boot \emph{enabled}.
 
 Now, secure boot should be enabled, and Pacman should re-sign the kernel images when installing new packages.
 
+
 \section{Enabling Wayland in Electron \& Chromium}
 
 It is possible to enable native Wayland rendering --- rather than using Xwayland --- in Electron apps like Code and Discord, as well as in Chromium.
@@ -223,6 +232,7 @@ $ xeyes
 in a terminal.
 If the eyes follow the cursor as it moves across an application window, it is running in Xwayland.
 If the eyes do not follow the cursor, the application is running in native Wayland.
+
 
 \section{Xwayland scaling patch}
 
@@ -266,6 +276,7 @@ STEAM_FORCE_DESKTOPUI_SCALING=2
 \end{lstlisting}
 This environment variable --- after rebooting --- should double Steam's scaling, hopefully matching the scale of other applications.
 
+
 \section{Enabling Bluetooth}
 
 Install the \lstinline|bluez| and \lstinline|bluez-utils| packages:
@@ -279,6 +290,7 @@ Then enable and start the Bluetooth service:
 # systemctl start bluetooth.service
 \end{lstlisting}
 
+
 \section{Nano linting}
 
 Enable linting in Nano by creating a file at \lstinline|~/.nanorc|.
@@ -288,6 +300,7 @@ include /usr/share/nano/*.nanorc
 \end{lstlisting}
 This enables linting with all of Nano's supported file types.
 To enable Nano linting for all users (including the root user), add this line to \lstinline|/etc/nanorc| instead.
+
 
 \section{Gaming on Linux}
 
@@ -404,6 +417,7 @@ For example, Gamescope sometimes doesn't draw a window when opening a game with 
 
 Install the \lstinline|dosfstools| and \lstinline|ntfsprogs| packages for compatibility with FAT32 and NTFS systems respectively.
 
+
 \section{Power saving}
 
 Install the \lstinline|tlp| and \lstinline|tlp-rdw| packages to enable power-saving optimizations to extend battery life on Arch Linux \cite{tlp-installation}.
@@ -412,6 +426,7 @@ Start and enable \lstinline|tlp.service|:
 # systemctl enable tlp.service
 # systemctl start tlp.service
 \end{lstlisting}
+
 
 \section{Intel CPU cooling}
 
@@ -422,6 +437,7 @@ After this is installed, start and enable \lstinline|thermald.service|:
 # systemctl enable thermald.service
 # systemctl start thermald.service
 \end{lstlisting}
+
 
 \section{Ctrl+Backspace functionality}
 
@@ -462,6 +478,7 @@ View \lstinline|00-keyboard.conf| again, and ensure that `\lstinline|terminate:c
 Finally, start GNOME Tweaks, and navigate to `Keyboard', and then `Additional Layout Options'.
 Uncheck the `Ctrl+Alt+Backspace' option under `Key sequence to kill the X server'.
 Whole-word backspace functionality should be restored, and should hopefully persist upon next reboot.
+
 
 \bibliographystyle{IEEEtranN}
 \bibliography{refs}
