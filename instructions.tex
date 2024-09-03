@@ -480,6 +480,16 @@ Uncheck the `Ctrl+Alt+Backspace' option under `Key sequence to kill the X server
 Whole-word backspace functionality should be restored, and should hopefully persist upon next reboot.
 
 
+\section{Hardware clock synchronization}
+
+When duel booting with Windows, a user may notice the time is incorrect (offset by a number of hours) on their Windows partition.
+This is due to the different ways the two operating systems interpret the hardware (i.e., CMOS) clock.
+Set Linux to synchronise the hardware clock with the local time (rather than UTC time, as is default) with the following command \cite{wrong-time-duel-boot}:
+\begin{lstlisting}
+$ timedatectl set-local-rtc 1
+\end{lstlisting}
+
+
 \bibliographystyle{IEEEtranN}
 \bibliography{refs}
 
