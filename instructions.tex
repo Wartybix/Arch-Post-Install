@@ -325,6 +325,10 @@ To make this trigger rumble attention setting apply at loading time, enter the f
 $ echo "options hid_xpadneo rumble_attenuation=0,70" | sudo tee /etc/modprobe.d/99-xpadneo-bluetooth.conf
 \end{lstlisting}
 Change the \lstinline|rumble_attenuation=0,70| value to your preferred value.
+To make this file immutable (so that the system doesn't delete it), run:
+\begin{lstlisting}
+# chattr +i /etc/modprobe.d/99-xpadneo-bluetooth.conf
+\end{lstlisting}
 
 \subsubsection{Improve latency on Xbox Series X|S controllers}
 
