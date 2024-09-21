@@ -493,6 +493,17 @@ Set Linux to synchronise the hardware clock with the local time (rather than UTC
 $ timedatectl set-local-rtc 1
 \end{lstlisting}
 
+\section{Boot Screen Timer}
+
+To change how long the boot menu stays open before the default entry is automatically selected, use the following command:
+\begin{lstlisting}[escapechar=@]
+# bootctl set-timeout @\underline{n}@
+\end{lstlisting}
+where \lstinline|n| is the time in seconds the boot screen stays visible.
+
+The timeout can be set to 0, which will hide boot the screen altogether, and immediately boot to the default entry when powering on the computer.
+The user can, however, press the space bar as the computer is booting (much like with the DEL key etc. to enter the BIOS) to access the boot menu.
+
 
 \bibliographystyle{IEEEtranN}
 \bibliography{refs}
