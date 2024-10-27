@@ -492,6 +492,23 @@ where \lstinline|n| is the time in seconds the boot screen stays visible.
 The timeout can be set to 0, which will hide boot the screen altogether, and immediately boot to the default entry when powering on the computer.
 The user can, however, press the space bar as the computer is booting (much like with the DEL key etc. to enter the BIOS) to access the boot menu.
 
+\section{Desktop environment media player control}
+
+By default, when playing media through a browser (such as a YouTube video), you may be able to control (i.e. pause/play, fast-forward/rewind) it through your shell. 
+On GNOME, a widget which displays details about --- and provides playback controls for --- the currently playing media can be accessed by opening the notifications panel.
+Using YouTube as an example:
+\begin{itemize}
+    \item The title field should be the video title.
+    \item The artist field should be the uploader channel name.
+    \item The cover-art should be the video thumbnail. 
+\end{itemize}
+However, by default it may be missing some details, like artist name or cover art, and the media title may just be the title of the browser tab.
+
+To fix this, an MPRIS interface should be installed.
+Install the \lstinline|playerctl| package from the \lstinline|extra| repository, and restart your browser.
+The missing details should now appear in the media player widget.
+
+
 % TODO Add section for fwupd
 
 % TODO Add section for Plymouth
